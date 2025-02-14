@@ -31,10 +31,10 @@ const App = () => {
         <Suspense fallback={<div>Global Fallback UI</div>}>
           <Routes>
             <Route path='/' element={<Navigate to='/context' replace />} />
-            <Route path='/context' element={ContextExample} />
-            <Route path='/redux' element={ReduxExample} />
-            <Route path='/redux-thunk' element={ReduxThunkExample} />
-            <Route path='/optimizations' element={Optimizations} />
+            <Route path='/context' element={<ContextExample />} />
+            <Route path='/redux' element={<ReduxExample />} />
+            <Route path='/redux-thunk' element={<ReduxThunkExample />} />
+            <Route path='/optimizations' element={<Optimizations />} />
           </Routes>
         </Suspense>
       </div>
