@@ -21,11 +21,13 @@ Start by creating a new Vite project with the React template:
 ```bash
 npm create vite@latest my-react-app --template react
 cd my-react-app
+```
 
 ### 2. Install Dependencies
 Install the required packages for Tailwind CSS and the Vite plugin:
 ```bash
 npm install tailwindcss @tailwindcss/vite
+```
 
 ### 3. Configure Vite
 Open or create the vite.config.js file in the root directory of your project and add the Tailwind CSS plugin:
@@ -39,9 +41,11 @@ export default defineConfig({
     tailwindcss(),
   ],
 });
+```
 
 ### 4. Set Up Tailwind CSS
 In your src/index.css (or the main CSS file of your project), add the following line to import the Tailwind CSS library:
 
 ```bash
 @import "tailwindcss";
+```
