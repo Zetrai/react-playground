@@ -43,6 +43,10 @@ const ReduxThunkExample = () => {
       <div className='flex flex-col'>
         <div className='flex flex-col justify-center items-center border-2 border-b-sky-700 p-5 gap-5'>
           <h2 className='text-2xl w-full border-b-2 text-center'>User List</h2>
+          <p className='italic text-[14px]'>
+            The list of users is fetched from the Redux store. The users are
+            filtered based on the search term entered in the input field.
+          </p>
           <div>
             {loading && <div>Loading...</div>}
             {error && <div>Error...</div>}
@@ -58,6 +62,12 @@ const ReduxThunkExample = () => {
           <h2 className='text-2xl w-full border-b-2 text-center'>
             Debouncing Example
           </h2>
+          <p className='italic text-[14px]'>
+            The input field uses debouncing to reduce the number of times the
+            search function is triggered as the user types. The search input is
+            debounced to trigger the filtering function only after 500ms of
+            inactivity.
+          </p>
           <div>
             <input
               type='text'

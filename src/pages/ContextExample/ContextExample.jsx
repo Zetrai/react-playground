@@ -13,6 +13,11 @@ const ContextExample = () => {
           <h2 className='text-2xl w-full border-b-2 text-center'>
             Counter Context
           </h2>
+          <p className='italic text-[14px]'>
+            This section demonstrates how to use React Context for managing
+            global state. The counter state (`count`) is shared across the app
+            using the Context API.
+          </p>
 
           <p className='text-2xl font-bold'>Count: {count}</p>
           <div className='flex flex-row gap-2'>

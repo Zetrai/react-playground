@@ -27,7 +27,7 @@ const App = () => {
           Optimizations
         </Link>
       </div>
-      <div className='w-full h-[90%] bg-gray-300'>
+      <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
         <Suspense fallback={<div>Global Fallback UI</div>}>
           <Routes>
             <Route path='/' element={<Navigate to='/context' replace />} />

@@ -20,6 +20,11 @@ const ReduxExample = () => {
           <h2 className='text-2xl w-full border-b-2 text-center'>
             Redux Toolkit
           </h2>
+          <p className='italic text-[14px]'>
+            This example demonstrates the use of Redux Toolkit for state
+            management. The `addTask` and `removeTask` actions are dispatched to
+            update the state in the Redux store.
+          </p>
           <p className='text-center text-2xl font-bold'>
             TotalTasks: {totalTasks}
           </p>
@@ -35,7 +40,11 @@ const ReduxExample = () => {
               Remove Task
             </button>
           </div>
-          <div>
+          <div className='flex flex-col justify-center items-center'>
+            <p className='text-[14px] italic'>
+              Below is the current list of tasks stored in the Redux store. Each
+              task has an ID and a description.
+            </p>
             {taskList.map((task) => {
               return <li key={task.id}>{task.task}</li>;
             })}
