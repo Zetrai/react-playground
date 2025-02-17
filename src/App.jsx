@@ -9,6 +9,7 @@ const ReduxThunkExample = lazy(() =>
   import('./pages/ReduxThunkExample/ReduxThunkExample')
 );
 const Optimizations = lazy(() => import('./pages/Optimizations/Optimizations'));
+const FormExample = lazy(() => import('./pages/FormExample/FormExample'));
 
 const App = () => {
   return (
@@ -26,6 +27,9 @@ const App = () => {
         <Link to='/optimizations' className='font-bold'>
           Optimizations
         </Link>
+        <Link to='/forms' className='font-bold'>
+          Forms
+        </Link>
       </div>
       <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
         <Suspense fallback={<div>Global Fallback UI</div>}>
@@ -35,6 +39,7 @@ const App = () => {
             <Route path='/redux' element={<ReduxExample />} />
             <Route path='/redux-thunk' element={<ReduxThunkExample />} />
             <Route path='/optimizations' element={<Optimizations />} />
+            <Route path='/forms' element={<FormExample />} />
           </Routes>
         </Suspense>
       </div>
