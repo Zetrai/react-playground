@@ -10,6 +10,7 @@ const ReduxThunkExample = lazy(() =>
 );
 const Optimizations = lazy(() => import('./pages/Optimizations/Optimizations'));
 const FormExample = lazy(() => import('./pages/FormExample/FormExample'));
+const ReactQuery = lazy(() => import('./pages/ReactQuery/ReactQuery'));
 
 const App = () => {
   return (
@@ -30,6 +31,9 @@ const App = () => {
         <Link to='/forms' className='font-bold'>
           Forms
         </Link>
+        <Link to='/react-query' className='font-bold'>
+          RTKQuery
+        </Link>
       </div>
       <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
         <Suspense fallback={<div>Global Fallback UI</div>}>
@@ -40,6 +44,7 @@ const App = () => {
             <Route path='/redux-thunk' element={<ReduxThunkExample />} />
             <Route path='/optimizations' element={<Optimizations />} />
             <Route path='/forms' element={<FormExample />} />
+            <Route path='/react-query' element={<ReactQuery />} />
           </Routes>
         </Suspense>
       </div>
