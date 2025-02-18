@@ -1,7 +1,31 @@
+import { useCallback, useEffect, useState } from 'react';
 import { useCounterContext } from '../../contexts/counterContext';
+import { debounce } from 'lodash';
 
 const ContextExample = () => {
-  const { count, increment, decrement, reset } = useCounterContext();
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState(0);
+  const { count, increment, decrement, incrementByValue, reset } =
+    useCounterContext();
+
+  const changeHandler = (e) => {
+    const newValue = Number(e.target.value);
+    setValue(newValue);
+    debouncedIncrementByValue(newValue);
+  };
+
+  const debouncedIncrementByValue = useCallback(
+    debounce((val) => {
+      setShow(val);
+      setValue(0);
+      incrementByValue(val);
+    }, 500),
+    [incrementByValue] // Memoize to avoid re-creating it on every render
+  );
+
+  useEffect(() => {
+    if (show && value) setShow(false);
+  }, [value]);
 
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -42,6 +66,19 @@ const ContextExample = () => {
               }}>
               Reset
             </button>
+          </div>
+          <div className='flex flex-col justify-center items-center gap-5'>
+            <input
+              type='number'
+              value={value}
+              onChange={changeHandler}
+              className='border-2'
+            />
+            {show && (
+              <p>
+                Incremented by <b>{show}</b>
+              </p>
+            )}
           </div>
         </div>
         <div className='flex flex-col justify-center items-center border-2 border-b-sky-700'></div>

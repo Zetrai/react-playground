@@ -1,22 +1,23 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useReducer, useContext } from 'react';
 
 const COUNTER_ACTION_TYPES = {
   INCREMENT: 'INCREMENT',
   DECREMENT: 'DECREMENT',
+  INCREMENTBYVALUE: 'INCREMENTBYVALUE',
   RESET: 'RESET',
 };
 
-const initialState = {
-  count: 0,
-};
+const initialState = { count: 0 };
 
-const counterReducer = (state = initialState, action) => {
+const countReducer = (state = initialState, action) => {
   switch (action.type) {
     case COUNTER_ACTION_TYPES.INCREMENT:
       return { ...state, count: state.count + 1 };
     case COUNTER_ACTION_TYPES.DECREMENT:
       if (state.count === 0) return state;
       return { ...state, count: state.count - 1 };
+    case COUNTER_ACTION_TYPES.INCREMENTBYVALUE:
+      return { ...state, count: state.count + action.payload };
     case COUNTER_ACTION_TYPES.RESET:
       return { ...state, count: 0 };
     default:
@@ -28,18 +29,25 @@ const CounterContext = createContext({
   count: 0,
   increment: () => {},
   decrement: () => {},
+  incrementByValue: () => {},
   reset: () => {},
 });
 
 export const CounterProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(counterReducer, initialState);
+  const [state, dispatch] = useReducer(countReducer, initialState);
 
   const increment = () => dispatch({ type: COUNTER_ACTION_TYPES.INCREMENT });
   const decrement = () => dispatch({ type: COUNTER_ACTION_TYPES.DECREMENT });
+  const incrementByValue = (incrementValue) =>
+    dispatch({
+      type: COUNTER_ACTION_TYPES.INCREMENTBYVALUE,
+      payload: incrementValue,
+    });
   const reset = () => dispatch({ type: COUNTER_ACTION_TYPES.RESET });
 
   return (
-    <CounterContext.Provider value={{ ...state, increment, decrement, reset }}>
+    <CounterContext.Provider
+      value={{ ...state, increment, decrement, incrementByValue, reset }}>
       {children}
     </CounterContext.Provider>
   );
