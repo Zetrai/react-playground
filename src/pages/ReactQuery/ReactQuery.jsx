@@ -61,7 +61,7 @@ const ReactQuery = () => {
           <button onClick={handleSubmit} className='p-3 bg-amber-600'>
             Add Post
           </button>
-          {mutation.isLoading && <div>Adding...</div>}
+          {mutation.isPending && <div>Adding...</div>}
           {mutation.isError && <div>Error: {mutation.error.message}</div>}
           {mutation.isSuccess && <div>Post added successfully!</div>}
         </div>
