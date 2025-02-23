@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useCounterContext } from '../../contexts/counterContext';
 import { debounce } from 'lodash';
 
+import WithAuth from '../../components/hoc/withAuth';
+
 const ContextExample = () => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState(0);
@@ -86,4 +88,4 @@ const ContextExample = () => {
     </div>
   );
 };
-export default ContextExample;
+export default WithAuth(ContextExample);

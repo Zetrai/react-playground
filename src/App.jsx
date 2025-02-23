@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import ErrorBoundry from './components/ErrorBoundry';
 
 const ContextExample = lazy(() =>
   import('./pages/ContextExample/ContextExample')
@@ -41,16 +42,18 @@ const App = () => {
       </div>
       <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
         <Suspense fallback={<div>Global Fallback UI</div>}>
-          <Routes>
-            <Route path='/' element={<Navigate to='/context' replace />} />
-            <Route path='/context' element={<ContextExample />} />
-            <Route path='/redux' element={<ReduxExample />} />
-            <Route path='/redux-thunk' element={<ReduxThunkExample />} />
-            <Route path='/optimizations' element={<Optimizations />} />
-            <Route path='/forms' element={<FormExample />} />
-            <Route path='/react-query' element={<ReactQuery />} />
-            <Route path='/rtk-query' element={<RTKQuery />} />
-          </Routes>
+          <ErrorBoundry>
+            <Routes>
+              <Route path='/' element={<Navigate to='/context' replace />} />
+              <Route path='/context' element={<ContextExample />} />
+              <Route path='/redux' element={<ReduxExample />} />
+              <Route path='/redux-thunk' element={<ReduxThunkExample />} />
+              <Route path='/optimizations' element={<Optimizations />} />
+              <Route path='/forms' element={<FormExample />} />
+              <Route path='/react-query' element={<ReactQuery />} />
+              <Route path='/rtk-query' element={<RTKQuery />} />
+            </Routes>
+          </ErrorBoundry>
         </Suspense>
       </div>
     </div>
