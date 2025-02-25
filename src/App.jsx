@@ -13,6 +13,9 @@ const Optimizations = lazy(() => import('./pages/Optimizations/Optimizations'));
 const FormExample = lazy(() => import('./pages/FormExample/FormExample'));
 const ReactQuery = lazy(() => import('./pages/ReactQuery/ReactQuery'));
 const RTKQuery = lazy(() => import('./pages/RTKQueryExample/RTKQuery'));
+const GraphQLExample = lazy(() =>
+  import('./pages/GraphQLExample/GraphQLExample')
+);
 
 const App = () => {
   return (
@@ -27,17 +30,20 @@ const App = () => {
         <Link to='/redux-thunk' className='font-bold'>
           Redux-Thunk
         </Link>
-        <Link to='/optimizations' className='font-bold'>
+        {/* <Link to='/optimizations' className='font-bold'>
           Optimizations
-        </Link>
-        <Link to='/forms' className='font-bold'>
+        </Link> */}
+        {/* <Link to='/forms' className='font-bold'>
           Forms
-        </Link>
-        <Link to='/react-query' className='font-bold'>
+        </Link> */}
+        {/* <Link to='/react-query' className='font-bold'>
           React Query
-        </Link>
+        </Link> */}
         <Link to='/rtk-query' className='font-bold'>
           RTK Query
+        </Link>
+        <Link to='/graph-ql' className='font-bold'>
+          GraphQL
         </Link>
       </div>
       <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
@@ -52,6 +58,7 @@ const App = () => {
               <Route path='/forms' element={<FormExample />} />
               <Route path='/react-query' element={<ReactQuery />} />
               <Route path='/rtk-query' element={<RTKQuery />} />
+              <Route path='/graph-ql' element={<GraphQLExample />} />
             </Routes>
           </ErrorBoundry>
         </Suspense>
