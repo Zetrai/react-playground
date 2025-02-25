@@ -1,6 +1,20 @@
 describe('GraphQLExample Page', () => {
   beforeEach(() => {
     cy.visit('/graph-ql');
+    cy.intercept('POST', 'https://countries.trevorblades.com/', (req) => {
+      if (req.body.operationName === 'GET_COUNTRIES') {
+        req.reply({
+          data: {
+            countries: [
+              { code: 'US', name: 'United States', emoji: '🇺🇸' },
+              { code: 'IN', name: 'India', emoji: '🇮🇳' },
+              { code: 'AF', name: 'Afghanistan', emoji: '🇦🇫' },
+              { code: 'AL', name: 'Albania', emoji: '🇦🇱' },
+            ],
+          },
+        });
+      }
+    });
   });
 
   it('should display country list', () => {
