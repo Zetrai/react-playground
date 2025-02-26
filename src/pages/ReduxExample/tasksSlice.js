@@ -9,17 +9,17 @@ const initialTaskList = [
 
 const tasksSlice = createSlice({
   name: 'tasks',
-  initialState: { value: { totalTasks: 1, taskList: initialTaskList } },
+  initialState: { totalTasks: 1, taskList: initialTaskList },
   reducers: {
     addTask: (state, action) => {
-      state.value.totalTasks += 1;
-      state.value.taskList.push(action.payload);
+      state.totalTasks += 1;
+      state.taskList.push(action.payload);
     },
     removeTask: (state, action) => {
-      if (state.value.totalTasks === 0) return;
+      if (state.totalTasks === 0) return;
 
-      state.value.totalTasks -= 1;
-      state.value.taskList = state.value.taskList.filter(
+      state.totalTasks -= 1;
+      state.taskList = state.taskList.filter(
         (task) => task.id !== action.payload.id
       );
     },

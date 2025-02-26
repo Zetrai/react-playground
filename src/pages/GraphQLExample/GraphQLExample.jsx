@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
+import client from './apolloClient';
 
 // ✅ Query: Fetch first 10 countries
 const GET_COUNTRIES = gql`
@@ -27,7 +28,8 @@ const GraphQLExample = () => {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
   const first10Countries = data?.countries.slice(0, 10);
 
-  // Mutation hook
+  console.log('Apollo Cache:', client.cache.extract());
+
   const [addCountry] = useMutation(ADD_COUNTRY, {
     update(cache, { data: { addCountry } }) {
       cache.modify({

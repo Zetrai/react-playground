@@ -3,7 +3,7 @@ import { addTask, removeTask } from './tasksSlice';
 
 const ReduxExample = () => {
   const dispatch = useDispatch();
-  const { totalTasks, taskList } = useSelector((state) => state.tasks.value);
+  const { totalTasks, taskList } = useSelector((state) => state.tasks);
 
   const newTask = {
     id: totalTasks + 1,
