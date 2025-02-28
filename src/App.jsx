@@ -13,6 +13,9 @@ const Optimizations = lazy(() => import('./pages/Optimizations/Optimizations'));
 const FormExample = lazy(() => import('./pages/FormExample/FormExample'));
 const ReactQuery = lazy(() => import('./pages/ReactQuery/ReactQuery'));
 const RTKQuery = lazy(() => import('./pages/RTKQueryExample/RTKQuery'));
+const ReduxSagaExample = lazy(() =>
+  import('./pages/ReduxSagaExample/ReduxSagaExample')
+);
 const GraphQLExample = lazy(() =>
   import('./pages/GraphQLExample/GraphQLExample')
 );
@@ -42,6 +45,9 @@ const App = () => {
         <Link to='/rtk-query' className='font-bold'>
           RTK Query
         </Link>
+        <Link to='/redux-saga' className='font-bold'>
+          Redux Saga
+        </Link>
         <Link to='/graph-ql' className='font-bold'>
           GraphQL
         </Link>
@@ -58,6 +64,7 @@ const App = () => {
               <Route path='/forms' element={<FormExample />} />
               <Route path='/react-query' element={<ReactQuery />} />
               <Route path='/rtk-query' element={<RTKQuery />} />
+              <Route path='/redux-saga' element={<ReduxSagaExample />} />
               <Route path='/graph-ql' element={<GraphQLExample />} />
             </Routes>
           </ErrorBoundry>
