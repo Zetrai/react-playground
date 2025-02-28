@@ -35,6 +35,23 @@ const sortMethod = (str) => {
 
 console.log('Anagrams: ', sortMethod(s4) === sortMethod(s5));
 
+const isAnagrams = (str1, str2) => {
+  if (str1.length !== str2.length) return false;
+  const countChars = {};
+
+  for (let char of str1) {
+    countChars[char] = (countChars[char] || 0) + 1;
+  }
+  for (let char of str2) {
+    if (!countChars[char]) return false;
+    countChars[char]--;
+  }
+
+  return true;
+};
+
+console.log(isAnagrams('listen', 'silent'));
+
 console.log('......................');
 
 // How do you extract numbers from a given string?
@@ -66,6 +83,22 @@ for (const char of s8) {
     break;
   }
 }
+
+const findFirstUnique = (str) => {
+  const count = new Map();
+
+  for (let char of str) {
+    count.set(char, (count.get(char) || 0) + 1);
+  }
+
+  for (const [char, freq] of count) {
+    if (freq === 1) return char;
+  }
+  return null;
+};
+
+console.log(findFirstUnique('aabcf'));
+
 console.log('......................');
 
 // How do you count the number of vowels in a string?
@@ -143,20 +176,21 @@ cb
 cba
 cbad
 */
-const lengthSub = (s) => {
-  let maxLength = 0;
+const lengthSub = (str) => {
+  let maxLen = 0;
   const charSet = new Set();
   let left = 0;
 
-  for (let right = 0; right < s.length; right++) {
-    while (charSet.has(s[right])) {
-      charSet.delete(s[left]);
+  for (let index in str) {
+    while (charSet.has(str[index])) {
+      charSet.delete(str[left]);
       left++;
     }
-    charSet.add(s[right]);
-    maxLength = Math.max(maxLength, right - left + 1);
+    charSet.add(str[index]);
+    maxLen = Math.max(maxLen, index - left + 1);
   }
-  return maxLength;
+
+  return maxLen;
 };
 
 console.log(lengthSub(st5));

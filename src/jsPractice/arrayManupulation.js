@@ -1,7 +1,3 @@
-/*
-What is the difference between .splice() and .slice()?
-*/
-
 // How do you remove duplicates from an array?
 console.log('Remove Duplicates Output');
 const a1 = [1, 2, 3, 3, 2];
@@ -53,7 +49,7 @@ a5.splice(1, 2); // Removes 2 elements starting from index 1 → arr = [1, 4, 5]
 console.log(a5);
 a5 = [1, 2, 3, 4, 5];
 // slice(start, end) - does not modify original
-const sliced = a5.slice(1, 3); // [4, 5]
+const sliced = a5.slice(1, 3); // [2, 3]
 console.log(sliced);
 console.log('......................');
 
@@ -86,6 +82,24 @@ const setArr = new Set(a8);
 const intersaction = a7.filter((num) => setArr.has(num));
 
 console.log('Intersaction between [1, 2, 3] and [2, 3, 4]: ', intersaction);
+
+const findIntersaction = (arr1, arr2) => {
+  let map = {};
+  let result = [];
+
+  arr1.forEach((num) => {
+    map[num] = map[num] || 0 + 1;
+  });
+
+  arr2.forEach((num) => {
+    if (map[num]) {
+      result.push(num);
+      map[num] = 0;
+    }
+  });
+  return result;
+};
+console.log(findIntersaction([1, 2, 4], [2, 3, 4, 1, 5]));
 
 console.log('......................');
 
@@ -156,11 +170,13 @@ const slice1 = b1.slice(0, -k);
 const slice2 = b1.slice(-k, b1Len);
 
 const rotateArr = [...slice2, ...slice1];
+
 console.log(`Rotating to right by ${k} steps: [${rotateArr}]`);
 
 console.log('......................');
 
-// How do you check if two arrays are equal?
+// How do you check if two arrays are equal?'
+console.log('How do you check if two arrays are equal?');
 
 const b2 = [1, 2, 3, 4, 5];
 const b3 = [1, 2, 3, 4, 5];
