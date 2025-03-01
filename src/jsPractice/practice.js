@@ -1,11 +1,30 @@
-import cloneDeep from 'lodash/cloneDeep.js'; // Only imports `cloneDeep`
+const manipulateFn = (arr) => {
+  const freqMap = new Map();
+  const commons = new Set();
+  const uniques = new Set(arr);
 
-const manipulateFn = (str) => {
-  const obj = { name: 'karan', details: { age: 26 } };
-  const obj2 = cloneDeep(obj);
-  obj2.details.age = 35;
-  console.log(obj);
-  console.log(obj2);
-  return '';
+  arr.forEach((num) => {
+    freqMap.set(num, (freqMap.get(num) || 0) + 1);
+  });
+
+  for (let [num, freq] of freqMap) {
+    if (freq > 1) commons.add(num);
+  }
+
+  console.log([...uniques]);
+  console.log([...commons]);
 };
-console.log(manipulateFn('abcba'));
+console.log(manipulateFn([2, 4, 6, 2, 5, 6, 4]));
+
+const myPromise2 = () => Promise.resolve('I have resolved!');
+
+async function secondFunction() {
+  setTimeout(() => {
+    console.log('timeout');
+  }, 1000); // Fixed the syntax here
+
+  console.log(myPromise2());
+  console.log('second');
+}
+
+secondFunction();

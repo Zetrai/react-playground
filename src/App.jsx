@@ -19,6 +19,7 @@ const ReduxSagaExample = lazy(() =>
 const GraphQLExample = lazy(() =>
   import('./pages/GraphQLExample/GraphQLExample')
 );
+const PracticePage = lazy(() => import('./pages/PracticePage/PracticePage'));
 
 const App = () => {
   return (
@@ -50,6 +51,9 @@ const App = () => {
         </Link>
         <Link to='/graph-ql' className='font-bold'>
           GraphQL
+        </Link>{' '}
+        <Link to='/practice' className='font-bold'>
+          Practice
         </Link>
       </div>
       <div className='w-full h-[90%] bg-gray-300  min-h-screen'>
@@ -66,6 +70,7 @@ const App = () => {
               <Route path='/rtk-query' element={<RTKQuery />} />
               <Route path='/redux-saga' element={<ReduxSagaExample />} />
               <Route path='/graph-ql' element={<GraphQLExample />} />
+              <Route path='/practice' element={<PracticePage />} />
             </Routes>
           </ErrorBoundry>
         </Suspense>
