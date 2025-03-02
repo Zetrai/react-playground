@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useCounterContext } from '../../contexts/counterContext';
 import { debounce } from 'lodash';
 
+import useDebounce from '../../customHooks/useDebounce';
 import WithAuth from '../../components/hoc/withAuth';
 
 const ContextExample = () => {
@@ -9,12 +10,24 @@ const ContextExample = () => {
   const [value, setValue] = useState(0);
   const { count, increment, decrement, incrementByValue, reset } =
     useCounterContext();
+  const debouncedValue = useDebounce(value, 500);
 
   const changeHandler = (e) => {
     const newValue = Number(e.target.value);
     setValue(newValue);
-    debouncedIncrementByValue(newValue);
+    // debouncedIncrementByValue(newValue);
   };
+  useEffect(() => {
+    console.log('here');
+    if (debouncedValue !== 0) {
+      // Ensure it's not running for zero
+      setShow(debouncedValue);
+      incrementByValue(debouncedValue);
+
+      // Move setValue outside the effect to prevent loops
+      setTimeout(() => setValue(0), 0);
+    }
+  }, [debouncedValue]);
 
   const debouncedIncrementByValue = useCallback(
     debounce((val) => {

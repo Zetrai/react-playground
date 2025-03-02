@@ -7,6 +7,13 @@ console.log('using set: ', b);
 let uniques = a1.filter((num, index) => a1.indexOf(num) === index);
 const seen = {};
 uniques = a1.filter((num) => !seen[num] && (seen[num] = true));
+uniques = a1.filter((num) => {
+  if (!seen[num]) {
+    seen[num] = true;
+    return true; // Keep the first occurrence of the number
+  }
+  return false;
+});
 console.log('using filer', uniques);
 console.log('......................');
 
@@ -99,7 +106,7 @@ const findIntersaction = (arr1, arr2) => {
   });
   return result;
 };
-console.log(findIntersaction([1, 2, 4], [2, 3, 4, 1, 5]));
+console.log(findIntersaction(a7, a8));
 
 console.log('......................');
 
@@ -120,6 +127,16 @@ const ageObj = people.reduce((acc, person) => {
   return acc;
 }, {});
 console.log(ageObj);
+
+const groupbyProperty = (arr, key) => {
+  return arr.reduce((acc, person) => {
+    const groupKey = person[key];
+    acc[groupKey] = acc[groupKey] || [];
+
+    acc[groupKey].push(person);
+    return acc;
+  }, {});
+};
 
 console.log('......................');
 
@@ -225,5 +242,24 @@ const findFirstUnique = (arr) => {
 console.log(findFirstUnique(b5));
 
 console.log('......................');
+
+// Find Common and uniques in an array
+const findCommonAndUniques = (arr) => {
+  const freqMap = new Map();
+  const commons = new Set();
+  const uniques = new Set(arr);
+
+  arr.forEach((num) => {
+    freqMap.set(num, (freqMap.get(num) || 0) + 1);
+  });
+
+  for (let [num, freq] of freqMap) {
+    if (freq > 1) commons.add(num);
+  }
+
+  console.log([...uniques]);
+  console.log([...commons]);
+};
+console.log(findCommonAndUniques([2, 4, 6, 2, 5, 6, 4]));
 
 console.log('......................');

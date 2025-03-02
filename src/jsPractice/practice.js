@@ -1,30 +1,29 @@
-const manipulateFn = (arr) => {
-  const freqMap = new Map();
-  const commons = new Set();
-  const uniques = new Set(arr);
+const manipulateFn = (str) => {
+  let maxLen = 0;
+  let charSet = new Set();
+  let left = 0;
 
-  arr.forEach((num) => {
-    freqMap.set(num, (freqMap.get(num) || 0) + 1);
-  });
+  for (let index in str) {
+    const char = str[index];
 
-  for (let [num, freq] of freqMap) {
-    if (freq > 1) commons.add(num);
+    while (charSet.has(char)) {
+      charSet.delete(str[left]);
+      left++;
+    }
+    charSet.add(char);
+    maxLen = Math.max(maxLen, index - left + 1);
   }
-
-  console.log([...uniques]);
-  console.log([...commons]);
+  return maxLen;
 };
-console.log(manipulateFn([2, 4, 6, 2, 5, 6, 4]));
 
-const myPromise2 = () => Promise.resolve('I have resolved!');
+console.log(manipulateFn('aabbcde') || 'Waiting for Response');
 
-async function secondFunction() {
-  setTimeout(() => {
-    console.log('timeout');
-  }, 1000); // Fixed the syntax here
+/*
+aabbcde
 
-  console.log(myPromise2());
-  console.log('second');
-}
-
-secondFunction();
+a
+aa -> a
+ab
+abb -> bb -> b
+bcde
+ */
