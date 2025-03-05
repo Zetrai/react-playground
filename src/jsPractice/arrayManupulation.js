@@ -263,3 +263,55 @@ const findCommonAndUniques = (arr) => {
 console.log(findCommonAndUniques([2, 4, 6, 2, 5, 6, 4]));
 
 console.log('......................');
+// Group by name in nested object
+const groupbyName = (arr) => {
+  const res = [];
+
+  const traverse = (menu) => {
+    res.push(menu.name);
+    if (Array.isArray(menu.subItems) && menu.subItems.length > 0) {
+      menu.subItems.forEach(traverse);
+    }
+  };
+
+  arr.forEach(traverse);
+  return res;
+};
+const groupbyName2 = (arr) => {
+  return arr.flatMap((menu) => [
+    menu.name,
+    ...(Array.isArray(menu.subItems) ? manipulateFn(menu.subItems) : []),
+  ]);
+};
+const menuArr = [
+  {
+    name: 'menu1',
+    subItems: [
+      {
+        name: 'menu2',
+        subItems: [
+          {
+            name: 'menu8',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'menu3',
+    subItems: [
+      {
+        name: 'menu4',
+      },
+      {
+        name: 'menu5',
+      },
+      {
+        name: 'menu6',
+      },
+    ],
+  },
+];
+
+console.log(groupbyName(menuArr));
+console.log('......................');

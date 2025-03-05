@@ -6,8 +6,12 @@ import usersReducer from '../pages/ReduxThunkExample/usersSlice';
 import { apiSlice } from '../pages/RTKQueryExample/apiSlice';
 import usersSagaReducer from '../pages/ReduxSagaExample/usersSagaSlice';
 import watchFetchUsers from '../pages/ReduxSagaExample/reduxSaga';
+import loggerMiddleware from './../pages/ReduxThunkExample/loggerMiddleware';
 
 const sagaMiddleware = createSagaMiddleware();
+
+console.log(apiSlice);
+console.log(apiSlice.reducerPath);
 
 const store = configureStore({
   reducer: {
@@ -17,7 +21,10 @@ const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware).concat(sagaMiddleware),
+    getDefaultMiddleware()
+      .concat(loggerMiddleware)
+      .concat(apiSlice.middleware)
+      .concat(sagaMiddleware),
 });
 
 // Run saga

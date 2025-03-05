@@ -1,29 +1,18 @@
-const manipulateFn = (str) => {
-  let maxLen = 0;
-  let charSet = new Set();
-  let left = 0;
-
-  for (let index in str) {
-    const char = str[index];
-
-    while (charSet.has(char)) {
-      charSet.delete(str[left]);
-      left++;
-    }
-    charSet.add(char);
-    maxLen = Math.max(maxLen, index - left + 1);
-  }
-  return maxLen;
+const manipulateFn = (str1, char, shuffle) => {
+  console.log(new RegExp(char, 'g'));
+  return str1.replace(char, '');
 };
-
-console.log(manipulateFn('aabbcde') || 'Waiting for Response');
+console.log(manipulateFn('adefbc', 'c'));
 
 /*
-aabbcde
-
+abccbad
+left = 0 , right =0
+left = 1, right =1
 a
-aa -> a
 ab
-abb -> bb -> b
-bcde
- */
+abc
+abcc -> bcc -> cc -> c
+cb
+cba
+cbad
+*/
